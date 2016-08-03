@@ -57,5 +57,36 @@ public class Odometer
 		 	}
 		 	
 	 }
+
+	public static int next(int number, ArrayList<Integer> odometer_list)
+	{
+	    int index = odometer_list.indexOf(number);
+	    
+	    return odometer_list.get((index+1)%odometer_list.size());
+	}
 	
+	public static int nNext(int number, int n)
+	{
+	    int length = findLength(number);
+	    ArrayList<Integer> odometer_list = getList(length);
+	    
+	    for(int i=0; i<n; i++)
+	    {
+	        number = next(number,odometer_list);
+	    }
+	    return number;
+	}
+	
+	public static int diff(int number1, int number2)
+	{
+	    int length = findLength(number1);
+	    ArrayList<Integer> odometer_list = getList(length);
+	    
+	    int index1 = odometer_list.indexOf(number1);
+	    int index2 = odometer_list.indexOf(number2);
+	    
+	    //System.out.println((index2-index1+odometer_list.size())%odometer_list.size());
+	    
+	    return (index2-index1+odometer_list.size())%odometer_list.size();
+	}	 
 }
