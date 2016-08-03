@@ -88,5 +88,32 @@ public class Odometer
 	    //System.out.println((index2-index1+odometer_list.size())%odometer_list.size());
 	    
 	    return (index2-index1+odometer_list.size())%odometer_list.size();
-	}	 
+	}
+	
+	public static int findLength(int num){
+	    int LenCount=0;
+	    while(num>0){
+	        num/=10;
+	        LenCount++;
+	    }
+	    return LenCount;
+	}
+	
+    public static int previous(ArrayList<Integer> NumList, int num){
+        int index = NumList.indexOf(num);
+        int size = NumList.size();
+        int returnIndex = (index-1+size)%size;
+        return NumList.get(returnIndex);
+    }
+    
+    public static int nPrevious(int num, int n){
+        int length = findLength(num);
+        int returnNum = num;
+        // ArrayList<Integer> NumList = new ArrayList<>(Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12));
+        ArrayList<Integer> NumList = getList(length);
+        for(int i=0;i<n;i++){
+            returnNum = previous(NumList, returnNum);    
+        }
+        return returnNum;
+    }
 }
